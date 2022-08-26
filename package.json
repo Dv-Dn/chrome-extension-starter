@@ -1,0 +1,48 @@
+{
+  "name": "vue-tailwind-chrome-extension-boilerplate",
+  "description": "[description]",
+  "displayName": "Vue Chrome Extension",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently -r -g \"pnpm:clear\" \"pnpm:dev:*\"",
+    "dev:prepare": "cross-env NODE_ENV=development esno scripts/prepare.ts ",
+    "dev:watch": "parcel watch .tmp/manifest.json --host localhost --log-level info",
+    "build": "concurrently -r -g \"pnpm:clear\" \"pnpm:build:*\"",
+    "build:prepare": "cross-env NODE_ENV=production esno scripts/prepare.ts",
+    "build:ext": "parcel build .tmp/manifest.json --no-content-hash --no-source-maps --no-cache --reporter @parcel/reporter-bundle-analyzer",
+    "clear": "rimraf dist/* extension.*",
+    "pack": "cross-env NODE_ENV=production concurrently -r -g \"pnpm:pack:*\"",
+    "pack:zip": "rimraf archives/extension.zip && esno scripts/archivate",
+    "pack:crx": "crx pack dist -o archives/extension.crx"
+  },
+  "devDependencies": {
+    "@parcel/config-webextension": "^2.7.0",
+    "@parcel/core": "^2.7.0",
+    "@parcel/reporter-bundle-analyzer": "^2.7.0",
+    "@parcel/transformer-vue": "^2.7.0",
+    "@types/chrome": "^0.0.195",
+    "@types/fs-extra": "^9.0.13",
+    "@types/node": "^18.7.13",
+    "@types/rimraf": "^3.0.2",
+    "adm-zip": "^0.5.9",
+    "chokidar": "^3.5.3",
+    "concurrently": "^7.3.0",
+    "cross-env": "^7.0.3",
+    "crx": "^5.0.1",
+    "esno": "^0.16.3",
+    "fs-extra": "^10.1.0",
+    "kolorist": "^1.5.1",
+    "parcel": "^2.7.0",
+    "postcss": "^8.4.16",
+    "prettier": "^2.7.1",
+    "prettier-plugin-tailwindcss": "^0.1.13",
+    "rimraf": "^3.0.2",
+    "tailwindcss": "^3.1.8",
+    "typescript": "^4.8.2"
+  },
+  "dependencies": {
+    "vue": "^3.2.37"
+  }
+}
