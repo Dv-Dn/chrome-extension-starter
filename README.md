@@ -1,6 +1,5 @@
 # Chrome extension Starter
 
----
 
 ## Pre-packed
 
