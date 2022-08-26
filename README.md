@@ -1,4 +1,4 @@
-# Chrome extension Vue Starter
+# Chrome extension Starter
 
 ---
 
