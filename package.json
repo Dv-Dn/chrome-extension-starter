@@ -12,9 +12,10 @@
     "build": "concurrently -r -g pnpm:clear pnpm:build:*",
     "build:prepare": "cross-env NODE_ENV=production esno scripts/prepare.ts",
     "build:ext": "wait-on .tmp/manifest.json && parcel build .tmp/manifest.json --no-content-hash --no-source-maps --no-cache --reporter @parcel/reporter-bundle-analyzer",
-    "clear": "rimraf dist/* extension.*",
+    "clear": "rimraf dist/ && pnpm pack:clear",
     "pack": "cross-env NODE_ENV=production concurrently -r -g pnpm:pack:*",
-    "pack:zip": "rimraf archives/extension.zip && esno scripts/archivate",
+    "pack:clear": "rimraf archives/ key.pem",
+    "pack:zip": "esno scripts/archivate",
     "pack:crx": "crx pack dist -o archives/extension.crx"
   },
   "devDependencies": {
